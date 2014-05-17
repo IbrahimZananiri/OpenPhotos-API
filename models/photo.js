@@ -6,7 +6,7 @@ var mongoose = require('mongoose')
 var photoSchema = new Schema({
 
 	userDescription: { type: String, trim: true },
-	user: { type: Number },
+	user: { type: Number, required: true },
 	createdAt: { type: Date, default: Date.now },
 
 }, { collection: 'photo' });
@@ -22,18 +22,18 @@ photoSchema.methods.attach = function(attachment, cb) {
 	var headers = {
 		'x-amz-acl': 'public-read'
 	}
-	client.putFile(attachment.path, this.id+'.jpg', headers, function(err, uploadRes) {
+	client.putFile(attachment.path, this.user+'/'+this.id+'.jpg', headers, function(err, uploadRes) {
 	    if(err) return cb(err);
 	    cb(null, attachment);
 	  });
 }
 
 photoSchema.virtual('imageURL').get(function () {
-	return client.http('/'+this.id+'.jpg');
+	return client.http('/'+this.user+'/'+this.id+'.jpg');
 });
 
 photoSchema.virtual('thumbnailURL').get(function () {
-	return client.http('/'+this.id+'.jpg');
+	return client.http('/'+this.user+'/'+this.id+'.jpg');
 });
 
 photoSchema.set('toJSON', {
