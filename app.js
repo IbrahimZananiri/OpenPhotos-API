@@ -1,3 +1,6 @@
+if (process.env.NEW_RELIC_ENABLED && process.env.NEW_RELIC_LICENSE_KEY) {
+	require('newrelic');
+}
 var	restify = require('restify')
 ,	mongoose = require('mongoose')
 ,	package = require('./package')

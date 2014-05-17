@@ -13,6 +13,7 @@
     "restify": "*",
     "mongoose": "*",
     "knox": "*",
-    "request": "*"
+    "request": "*",
+    "newrelic": "*"
   }
 }
