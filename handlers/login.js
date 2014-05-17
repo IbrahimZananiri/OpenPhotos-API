@@ -1,6 +1,6 @@
-var authorizor = require('./handlers/authorizor')
+var authorizor = require('./authorizor')
 
-module.exports = [auth, function(req, res, next) {
+module.exports = [authorizor, function(req, res, next) {
 	res.send({});
 	next();
 }]

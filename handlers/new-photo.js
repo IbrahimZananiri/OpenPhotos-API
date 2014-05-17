@@ -1,5 +1,5 @@
-var	authorizor = require('./handlers/authorizor')
-,	Photo = require('./models/photo')
+var	authorizor = require('./authorizor')
+,	Photo = require('../models/photo')
 
 
 module.exports = [authorizor, function(req, res, next) {
