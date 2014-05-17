@@ -1,6 +1,5 @@
 var mongoose = require('mongoose')
 ,	Schema = mongoose.Schema
-,	attachments = require('mongoose-attachments-knox')
 ,	knox = require('knox')
 ,	os = require('os')
 
