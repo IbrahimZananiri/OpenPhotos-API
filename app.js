@@ -35,11 +35,13 @@ server.use(restify.requestLogger());
 
 server.use(authenticator);
 
-server.post('/users/me/photos', newPhotoHandler);
+server.post('/users/:id/photos', newPhotoHandler);
 
-server.get('/users/me/photos', photosHandler);
+server.get('/users/:id/photos', photosHandler);
 
 server.post('/users', loginHandler);
+
+server.get('/health', function(req, res, next) { res.send({up: true}); next() });
 
 
 server.listen(process.env.PORT || 8888, function () {
