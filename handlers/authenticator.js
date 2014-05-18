@@ -9,11 +9,12 @@ module.exports = function(req, res, next) {
 		url: 'https://graph.facebook.com/me?access_token='+req.headers.authorization
 	}, function(error, response, json) {
 		try {
-	  		req.user = JSON.parse(json);
-	  		next();
+			if (response && response.statusCode == 200)
+		  		req.user = JSON.parse(json);
 	  	} catch (ex) {
-	  		next();
+	  		console.log(ex);
 	  	}
+	  	next();
 	  });
 	
 }
